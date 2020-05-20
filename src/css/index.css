@@ -33,10 +33,18 @@ code {
   margin-top: 80px;
 }
 
-.start {
+.node-visited {
+  background: blueviolet;
+}
+
+.node-pathway {
+  background: blue;
+}
+
+.node-start {
   background: green;
 }
 
-.end {
+.node-end {
   background: red;
 }
