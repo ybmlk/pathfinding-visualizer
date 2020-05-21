@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import Node from './Node';
-import dijkstra from '../algorithms/dijkstra';
+import visualizeDijkstra from '../logic/visualizeDijkstra';
 
 function Grid() {
   const NUMBER_OF_ROWS = 20;
-  const NUMBER_OF_COLS = 55;
+  const NUMBER_OF_COLS = 28;
   const START_NODE_ROW = 3;
   const START_NODE_COL = 3;
   const END_NODE_ROW = 18;
@@ -13,6 +13,7 @@ function Grid() {
   const [startNode, setStart] = useState({});
   const [endNode, setEnd] = useState({});
   const [grid, setGrid] = useState([]);
+  const [isMouseDown, setMouseDown] = useState(false);
 
   class Cell {
     constructor(row, col) {
@@ -41,39 +42,27 @@ function Grid() {
     // eslint-disable-next-line
   }, []);
 
-  function visualizeDijkstra() {
-    const { visitedNodes, nodesPath } = dijkstra(grid, startNode, endNode);
+  const handleMouseDown = () => setMouseDown(true);
+  const handleMouseUp = () => setMouseDown(false);
 
-    for (let i = 0; i <= visitedNodes.length; i++) {
-      // visualize shortest path at the end of the loop
-      if (i === visitedNodes.length) {
-        setTimeout(() => animateShortestPath(nodesPath), 10 * i);
-        continue;
-      }
-
-      setTimeout(() => {
-        const { row, col } = visitedNodes[i];
-        document.getElementById(`node-${row}-${col}`).classList.add('node-visited');
-      }, 10 * i);
+  function handleMouseEnter(row, col) {
+    if (isMouseDown) {
+      grid[row][col].isWall = true;
+      // console.log('Enter', row, col);
     }
   }
 
-  function animateShortestPath(nodesPath) {
-    for (let i = 0; i < nodesPath.length; i++) {
-      setTimeout(() => {
-        const { row, col } = nodesPath[i];
-        document.getElementById(`node-${row}-${col}`).classList.add('node-shortest-path');
-      }, 50 * i);
-    }
-  }
+  const mouseActions = { handleMouseDown, handleMouseUp, handleMouseEnter };
 
   return (
     <div className='grid'>
-      <button onClick={visualizeDijkstra}>visualize Dijkstra</button>
+      <button onClick={() => visualizeDijkstra(grid, startNode, endNode)}>
+        visualize Dijkstra
+      </button>
       {grid.map((currentRow, rowIdx) => (
         <div className='row' key={rowIdx} id={`row-${rowIdx}`}>
           {currentRow.map((cell, cellIdx) => {
-            return <Node {...cell} key={cellIdx} />;
+            return <Node key={cellIdx} {...cell} {...mouseActions} />;
           })}
         </div>
       ))}

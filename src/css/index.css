@@ -100,3 +100,7 @@ code {
 .node-end {
   background: red;
 }
+
+.node-wall {
+  background-color: rgb(12, 53, 71);
+}
