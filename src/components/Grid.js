@@ -4,11 +4,11 @@ import dijkstra from '../algorithms/dijkstra';
 
 function Grid() {
   const NUMBER_OF_ROWS = 20;
-  const NUMBER_OF_COLS = 20;
-  const START_NODE_ROW = 9;
-  const START_NODE_COL = 9;
+  const NUMBER_OF_COLS = 55;
+  const START_NODE_ROW = 3;
+  const START_NODE_COL = 3;
   const END_NODE_ROW = 18;
-  const END_NODE_COL = 18;
+  const END_NODE_COL = 50;
 
   const [startNode, setStart] = useState({});
   const [endNode, setEnd] = useState({});
@@ -62,7 +62,7 @@ function Grid() {
     for (let i = 0; i < nodesPath.length; i++) {
       setTimeout(() => {
         const { row, col } = nodesPath[i];
-        document.getElementById(`node-${row}-${col}`).classList.add('node-pathway');
+        document.getElementById(`node-${row}-${col}`).classList.add('node-shortest-path');
       }, 50 * i);
     }
   }
