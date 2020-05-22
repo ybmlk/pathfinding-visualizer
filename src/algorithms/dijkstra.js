@@ -42,7 +42,7 @@ function dijkstra(grid, startNode, endNode) {
   }
 
   // Trace the path
-  if (!endNode.previousNode) return { nodesPath: 'No Path Found' };
+  if (!endNode.previousNode) return { visitedNodes, nodesPath: [] };
 
   const path = []; // to be return at end
   let currentCell = endNode;

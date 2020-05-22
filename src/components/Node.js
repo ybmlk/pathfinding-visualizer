@@ -13,7 +13,6 @@ function Node({
   let extendedClass = '';
   if (isStart) extendedClass += ' node-start';
   if (isEnd) extendedClass += ' node-end';
-  if (isWall) extendedClass += ' node-wall';
 
   return (
     <div

@@ -4,11 +4,11 @@ import visualizeDijkstra from '../logic/visualizeDijkstra';
 
 function Grid() {
   const NUMBER_OF_ROWS = 20;
-  const NUMBER_OF_COLS = 28;
+  const NUMBER_OF_COLS = 50;
   const START_NODE_ROW = 3;
   const START_NODE_COL = 3;
-  const END_NODE_ROW = 18;
-  const END_NODE_COL = 50;
+  const END_NODE_ROW = 15;
+  const END_NODE_COL = 48;
 
   const [startNode, setStart] = useState({});
   const [endNode, setEnd] = useState({});
@@ -48,7 +48,7 @@ function Grid() {
   function handleMouseEnter(row, col) {
     if (isMouseDown) {
       grid[row][col].isWall = true;
-      // console.log('Enter', row, col);
+      document.getElementById(`node-${row}-${col}`).classList.add('node-wall');
     }
   }
 
