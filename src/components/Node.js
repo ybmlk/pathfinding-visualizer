@@ -9,19 +9,21 @@ function Node({
   handleMouseUp,
   handleMouseDown,
   handleMouseEnter,
+  handleMouseLeave,
 }) {
   let extendedClass = '';
   if (isStart) extendedClass += ' node-start';
   if (isEnd) extendedClass += ' node-end';
 
   return (
-    <div
-      className={`cell ${extendedClass}`}
+    <td
+      className={`${extendedClass}`}
       id={`node-${row}-${col}`}
-      onMouseDown={handleMouseDown}
+      onMouseDown={(e) => handleMouseDown(isStart, isEnd, row, col, e)}
       onMouseEnter={() => handleMouseEnter(row, col)}
       onMouseUp={handleMouseUp}
-    ></div>
+      onMouseLeave={() => handleMouseLeave(row, col)}
+    ></td>
   );
 }
 
