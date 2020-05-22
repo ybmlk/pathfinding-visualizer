@@ -1,7 +1,9 @@
 // import React from 'react';
 import dijkstra from '../algorithms/dijkstra';
+import clearBoard from './clearBoard';
 
 function visualizeDijkstra(grid, startNode, endNode) {
+  clearBoard(grid, true);
   const { visitedNodes, nodesPath } = dijkstra(grid, startNode, endNode);
 
   for (let i = 0; i <= visitedNodes.length; i++) {

@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import Node from './Node';
 import visualizeDijkstra from '../logic/visualizeDijkstra';
+import clearBoard from '../logic/clearBoard';
 
 function Grid() {
   const NUMBER_OF_ROWS = 20;
@@ -42,15 +43,15 @@ function Grid() {
     // eslint-disable-next-line
   }, []);
 
+  // Mouse envent listners
   const handleMouseDown = () => setMouseDown(true);
   const handleMouseUp = () => setMouseDown(false);
-
-  function handleMouseEnter(row, col) {
+  const handleMouseEnter = (row, col) => {
     if (isMouseDown) {
       grid[row][col].isWall = true;
       document.getElementById(`node-${row}-${col}`).classList.add('node-wall');
     }
-  }
+  };
 
   const mouseActions = { handleMouseDown, handleMouseUp, handleMouseEnter };
 
@@ -59,6 +60,7 @@ function Grid() {
       <button onClick={() => visualizeDijkstra(grid, startNode, endNode)}>
         visualize Dijkstra
       </button>
+      <button onClick={() => clearBoard(grid)}>Clear Board</button>
       {grid.map((currentRow, rowIdx) => (
         <div className='row' key={rowIdx} id={`row-${rowIdx}`}>
           {currentRow.map((cell, cellIdx) => {
