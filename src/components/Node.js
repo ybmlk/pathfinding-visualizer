@@ -4,7 +4,6 @@ function Node({
   row,
   col,
   isEnd,
-  isWall,
   isStart,
   handleMouseUp,
   handleMouseDown,
@@ -19,9 +18,9 @@ function Node({
     <td
       className={`${extendedClass}`}
       id={`node-${row}-${col}`}
+      onMouseUp={handleMouseUp}
       onMouseDown={(e) => handleMouseDown(isStart, isEnd, row, col, e)}
       onMouseEnter={() => handleMouseEnter(row, col)}
-      onMouseUp={handleMouseUp}
       onMouseLeave={() => handleMouseLeave(row, col)}
     ></td>
   );
