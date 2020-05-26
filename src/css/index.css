@@ -1,7 +1,6 @@
 body {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu',
-    'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
+  font-family: 'Lato', Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
@@ -11,9 +10,57 @@ code {
 }
 
 * {
+  margin: 0;
+  padding: 0;
   box-sizing: border-box;
 }
 
+/** Header Style */
+.container {
+  margin: auto;
+  max-width: 1400px;
+  overflow: auto;
+  padding: 10px 20px;
+}
+
+#navbar {
+  background: #34495e;
+  color: #fff;
+  overflow: auto;
+}
+
+#navbar .logo {
+  float: left;
+}
+
+#navbar ul {
+  list-style-type: none;
+  float: right;
+}
+
+#navbar ul li {
+  float: left;
+}
+
+#navbar ul li button {
+  display: block;
+  color: #fff;
+  padding: 10px 20px;
+  text-align: center;
+  background: #34495e;
+  border: 0px #34495e;
+  font-size: 16px;
+  font-weight: 700;
+}
+
+#navbar ul li button:hover {
+  color: #41dabb;
+}
+
+#navbar ul li button:focus {
+  outline: none;
+}
+/** Grid Style */
 table {
   border-collapse: collapse;
   white-space: normal;

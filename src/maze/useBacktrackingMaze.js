@@ -1,44 +1,27 @@
 import useClearBoard from '../hooks/useClearBoard';
-import visualizeMaze from '../functions/visualizeMaze';
+import useVisualizeMaze from '../hooks/useVisualizeMaze';
+import { createBoundary } from '../functions/wallFunctions';
 import Context from '../Context';
 import { useContext } from 'react';
 
 function useBacktrackingMaze() {
   const clearBoard = useClearBoard();
-  const { grid, NUMBER_OF_ROWS, NUMBER_OF_COLS, setisAnimating } = useContext(Context);
+  const { grid, NUMBER_OF_ROWS, NUMBER_OF_COLS } = useContext(Context);
+  const visualizeMaze = useVisualizeMaze();
 
   return function () {
     clearBoard();
-    const addWallsToAnimate = [];
+    const border = createBoundary(NUMBER_OF_COLS, NUMBER_OF_ROWS);
+    const addWallsToAnimate = [...border];
     const removeWallsToAnimate = [];
-
-    // Top Border
-    for (let c = 0; c < NUMBER_OF_COLS; c++) {
-      addWallsToAnimate.push([0, c]);
-    }
-    // Right Border
-    for (let r = 1; r < NUMBER_OF_ROWS; r++) {
-      addWallsToAnimate.push([r, NUMBER_OF_COLS - 1]);
-    }
-    // Bottom Border
-    for (let c = NUMBER_OF_COLS - 2; c >= 0; c--) {
-      addWallsToAnimate.push([NUMBER_OF_ROWS - 1, c]);
-    }
-    // Left Border
-    for (let r = NUMBER_OF_ROWS - 2; r >= 1; r--) {
-      addWallsToAnimate.push([r, 0]);
-    }
 
     generateInitialWall(2, NUMBER_OF_ROWS - 3, 2, NUMBER_OF_COLS - 3, grid);
     backtrackingRecursion(grid[1][1], grid);
-    visualizeMaze(addWallsToAnimate, 5, removeWallsToAnimate, 30, grid, setisAnimating);
+    visualizeMaze(addWallsToAnimate, 3, removeWallsToAnimate, 30);
 
     function generateInitialWall(rowStart, rowEnd, colStart, colEnd) {
       const wallRows = [];
-
-      for (let r = rowStart; r <= rowEnd; r += 2) {
-        wallRows.push(r);
-      }
+      for (let r = rowStart; r <= rowEnd; r += 2) wallRows.push(r);
 
       for (let r of wallRows) {
         for (let c = 0; c < NUMBER_OF_COLS; c++) {
@@ -47,10 +30,7 @@ function useBacktrackingMaze() {
       }
 
       const wallCols = [];
-
-      for (let c = colStart; c <= colEnd; c += 2) {
-        wallCols.push(c);
-      }
+      for (let c = colStart; c <= colEnd; c += 2) wallCols.push(c);
 
       for (let c of wallCols) {
         for (let r = 0; r < NUMBER_OF_ROWS; r++) {

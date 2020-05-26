@@ -47,7 +47,7 @@ function useMouseActions() {
     else if (isEndNodeMoving) removeEndNode(row, col);
   }
 
-  // === below are helper functions
+  // === below here are helper functions
 
   function toggleWall(row, col) {
     const element = document.getElementById(`node-${row}-${col}`);

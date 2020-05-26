@@ -1,39 +1,22 @@
 import useClearBoard from '../hooks/useClearBoard';
-import visualizeMaze from '../functions/visualizeMaze';
+import useVisualizeMaze from '../hooks/useVisualizeMaze';
+import { createBoundary } from '../functions/wallFunctions';
 import Context from '../Context';
 import { useContext } from 'react';
 
 function useDivisionMaze() {
   const clearBoard = useClearBoard();
-  const { grid, NUMBER_OF_ROWS, NUMBER_OF_COLS, setisAnimating } = useContext(Context);
+  const visualizeMaze = useVisualizeMaze();
+  const { grid, NUMBER_OF_ROWS, NUMBER_OF_COLS } = useContext(Context);
 
   return function () {
     clearBoard();
-    const addWallsToAnimate = [];
-
-    // Top Border
-    for (let c = 0; c < NUMBER_OF_COLS; c++) {
-      addWallsToAnimate.push([0, c]);
-    }
-
-    // Right Border
-    for (let r = 1; r < NUMBER_OF_ROWS; r++) {
-      addWallsToAnimate.push([r, NUMBER_OF_COLS - 1]);
-    }
-
-    // Bottom Border
-    for (let c = NUMBER_OF_COLS - 2; c >= 0; c--) {
-      addWallsToAnimate.push([NUMBER_OF_ROWS - 1, c]);
-    }
-
-    // Left Border
-    for (let r = NUMBER_OF_ROWS - 2; r >= 1; r--) {
-      addWallsToAnimate.push([r, 0]);
-    }
+    const boundary = createBoundary(NUMBER_OF_COLS, NUMBER_OF_ROWS);
+    const addWallsToAnimate = [...boundary];
 
     // Creates the inside of the maze
     mazeRecursively(2, NUMBER_OF_ROWS - 3, 2, NUMBER_OF_COLS - 3, 'horizontal');
-    visualizeMaze(addWallsToAnimate, 10, [], 1, grid, setisAnimating);
+    visualizeMaze(addWallsToAnimate, 10);
 
     function mazeRecursively(rowStart, rowEnd, colStart, colEnd, orientation) {
       if (rowStart > rowEnd || colStart > colEnd) return;
@@ -45,6 +28,7 @@ function useDivisionMaze() {
 
         const possibleCols = [];
         for (let num = colStart - 1; num <= colEnd + 1; num += 2) possibleCols.push(num);
+        // this random col will be a gate (won't be turned into wall)
         const randomCol = possibleCols[Math.floor(Math.random() * possibleCols.length)];
 
         for (let c = colStart - 1; c <= colEnd + 1; c++) {
@@ -64,12 +48,14 @@ function useDivisionMaze() {
           mazeRecursively(currentRow + 2, rowEnd, colStart, colEnd, 'vertical', grid);
         }
       } else {
+        // If its vertical
         const possibleCols = [];
         for (let num = colStart; num <= colEnd; num += 2) possibleCols.push(num);
         const currentCol = possibleCols[Math.floor(Math.random() * possibleCols.length)];
 
         const possibleRows = [];
         for (let num = rowStart - 1; num <= rowEnd + 1; num += 2) possibleRows.push(num);
+        // this random row will be a gate (won't be turned into wall)
         const randomRow = possibleRows[Math.floor(Math.random() * possibleRows.length)];
 
         for (let r = rowStart - 1; r <= rowEnd + 1; r++) {
