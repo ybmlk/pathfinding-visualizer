@@ -1,4 +1,4 @@
-import { makeItWall, removeWall } from '../logic/wallFunctions';
+import { makeItWall, removeWall } from './wallFunctions';
 
 function visualizeMaze(
   addWallsToAnimate,

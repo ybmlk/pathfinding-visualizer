@@ -1,15 +1,21 @@
-function mouseActions(
-  grid,
-  isAnimating,
-  isMouseDown,
-  isStartNodeMoving,
-  isEndNodeMoving,
-  setMouseDown,
-  setStartNode,
-  setEndNode,
-  setStartNodeMoving,
-  setEndNodeMoving
-) {
+import Context from '../Context';
+import { useContext } from 'react';
+
+function useMouseActions() {
+
+  const {
+    grid,
+    isAnimating,
+    isMouseDown,
+    isStartNodeMoving,
+    isEndNodeMoving,
+    setMouseDown,
+    setStartNode,
+    setEndNode,
+    setStartNodeMoving,
+    setEndNodeMoving,
+  } = useContext(Context);
+  
   // Mouse envent listners
   function handleMouseDown(isStart, isEnd, row, col, e) {
     e.preventDefault();
@@ -60,7 +66,7 @@ function mouseActions(
     element.classList.add('node-start');
     setStartNode(grid[row][col]);
   }
-  
+
   function addEndNode(row, col) {
     grid[row][col].isEnd = true;
     document.getElementById(`node-${row}-${col}`).classList.add('node-end');
@@ -80,4 +86,4 @@ function mouseActions(
   return { handleMouseDown, handleMouseUp, handleMouseEnter, handleMouseLeave };
 }
 
-export default mouseActions;
+export default useMouseActions;
