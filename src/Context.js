@@ -5,7 +5,9 @@ const Context = createContext();
 
 function Provider({ children }) {
   const NUMBER_OF_ROWS = 21;
-  const NUMBER_OF_COLS = 59;
+  const NUMBER_OF_COLS = 61;
+  const START_NODE = { row: 10, col: 15 };
+  const END_NODE = { row: 10, col: 45 };
 
   const [grid, setGrid] = useState([]);
   const [startNode, setStartNode] = useState({});
@@ -14,6 +16,7 @@ function Provider({ children }) {
   const [isStartNodeMoving, setStartNodeMoving] = useState(false);
   const [isEndNodeMoving, setEndNodeMoving] = useState(false);
   const [isAnimating, setisAnimating] = useState(false);
+  const [pathFound, setPathFound] = useState(false);
 
   const value = {
     grid,
@@ -23,8 +26,11 @@ function Provider({ children }) {
     isStartNodeMoving,
     isEndNodeMoving,
     isAnimating,
+    pathFound,
     NUMBER_OF_ROWS,
     NUMBER_OF_COLS,
+    START_NODE,
+    END_NODE,
     setGrid,
     setStartNode,
     setEndNode,
@@ -32,6 +38,7 @@ function Provider({ children }) {
     setStartNodeMoving,
     setEndNodeMoving,
     setisAnimating,
+    setPathFound,
   };
 
   return <Context.Provider value={value}>{children}</Context.Provider>;

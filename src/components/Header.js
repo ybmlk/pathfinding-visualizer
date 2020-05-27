@@ -9,7 +9,8 @@ import Context from '../Context';
 function Header() {
   const { isAnimating } = useContext(Context);
 
-  const clearBoard = useClearBoard();
+  const clearBoard = useClearBoard('keep-walls');
+  const resetBoard = useClearBoard('reset');
   const visualizeDijkstra = useVisualizeDijkstra();
   const generateBasicRandomMaze = useBasicRandomMaze();
   const generateDivisionMaze = useDivisionMaze();
@@ -46,6 +47,11 @@ function Header() {
           <li>
             <button disabled={isAnimating} onClick={clearBoard}>
               Clear Board
+            </button>
+          </li>
+          <li>
+            <button disabled={isAnimating} onClick={resetBoard}>
+              Reset Board
             </button>
           </li>
         </ul>

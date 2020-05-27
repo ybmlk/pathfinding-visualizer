@@ -4,17 +4,17 @@ import Context from '../Context';
 import { useContext } from 'react';
 
 function useVisualizeDijkstra() {
-  const clearBoard = useClearBoard(true);
-  const { grid, startNode, endNode, setisAnimating } = useContext(Context);
+  const clearBoard = useClearBoard('keep-walls');
+  const { grid, startNode, endNode, setisAnimating, setPathFound } = useContext(Context);
 
   return function () {
     clearBoard();
+    // setPathFound(false);
     setisAnimating(true);
+
     const { visitedNodes, nodesPath } = dijkstra(grid, startNode, endNode);
 
     for (let i = 0; i <= visitedNodes.length; i++) {
-      // Don't add animate start and end nodes
-      if (i === 0 || i === visitedNodes.length - 1) continue;
       // visualize shortest path at the end of the loop
       if (i === visitedNodes.length) {
         setTimeout(() => animateShortestPath(nodesPath), 10 * i);
@@ -30,11 +30,11 @@ function useVisualizeDijkstra() {
 
     function animateShortestPath(nodesPath) {
       for (let i = 0; i <= nodesPath.length; i++) {
-        // Don't add animate start and end nodes
-        if (i === 0 || i === nodesPath.length - 1) continue;
-
         if (i === nodesPath.length) {
-          setTimeout(() => setisAnimating(false), 50 * i);
+          setTimeout(() => {
+            setisAnimating(false);
+            setPathFound(true);
+          }, 50 * i);
           continue;
         }
 

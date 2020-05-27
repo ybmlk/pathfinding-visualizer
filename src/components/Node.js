@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useRef } from 'react';
 
 function Node({
   row,
@@ -10,13 +10,17 @@ function Node({
   handleMouseEnter,
   handleMouseLeave,
 }) {
-  let extendedClass = '';
-  if (isStart) extendedClass += ' node-start';
-  if (isEnd) extendedClass += ' node-end';
+  const nodeRef = useRef();
+
+  useEffect(() => {
+    if (isStart) nodeRef.current.classList.add('node-start');
+    if (isEnd) nodeRef.current.classList.add('node-end');
+    // eslint-disable-next-line
+  }, []);
 
   return (
     <td
-      className={`${extendedClass}`}
+      ref={nodeRef}
       id={`node-${row}-${col}`}
       onMouseUp={handleMouseUp}
       onMouseDown={(e) => handleMouseDown(isStart, isEnd, row, col, e)}

@@ -4,21 +4,23 @@ import useMouseActions from '../hooks/useMouseActions';
 import Context from '../Context';
 
 function Grid() {
-  const START_NODE_ROW = 1;
-  const START_NODE_COL = 1;
-  const END_NODE_ROW = 19;
-  const END_NODE_COL = 57;
-
-  const { grid, setGrid, setStartNode, setEndNode, NUMBER_OF_ROWS, NUMBER_OF_COLS } = useContext(
-    Context
-  );
+  const {
+    grid,
+    setGrid,
+    setStartNode,
+    setEndNode,
+    NUMBER_OF_ROWS,
+    NUMBER_OF_COLS,
+    START_NODE,
+    END_NODE,
+  } = useContext(Context);
 
   class Cell {
     constructor(row, col) {
       this.row = row;
       this.col = col;
-      this.isStart = row === START_NODE_ROW && col === START_NODE_COL;
-      this.isEnd = row === END_NODE_ROW && col === END_NODE_COL;
+      this.isStart = row === START_NODE.row && col === START_NODE.col;
+      this.isEnd = row === END_NODE.row && col === END_NODE.col;
       this.isVisited = false;
       this.isWall = false;
       this.distance = Infinity;
