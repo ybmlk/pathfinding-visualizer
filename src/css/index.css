@@ -16,21 +16,25 @@ code {
 }
 
 /** Header Style */
-.container {
+.wrapper {
   margin: auto;
-  max-width: 1400px;
-  overflow: auto;
+  max-width: fit-content;
   padding: 10px 20px;
+}
+
+.container {
+  display: table-cell;
+  vertical-align: middle;
 }
 
 #navbar {
   background: #34495e;
   color: #fff;
-  overflow: auto;
 }
 
 #navbar .logo {
   float: left;
+  margin-right: 100px;
 }
 
 #navbar ul {
@@ -40,26 +44,96 @@ code {
 
 #navbar ul li {
   float: left;
+  position: relative;
 }
 
 #navbar ul li button {
   display: block;
   color: #fff;
-  padding: 10px 20px;
+  padding: 10px 15px;
+  margin: 0px 5px;
   text-align: center;
   background: #34495e;
   border: 0px #34495e;
   font-size: 16px;
   font-weight: 700;
+  cursor: pointer;
+  transition: 0.3s;
 }
 
 #navbar ul li button:hover {
   color: #41dabb;
 }
 
+#navbar ul li button:disabled {
+  color: gray;
+}
+
 #navbar ul li button:focus {
   outline: none;
 }
+
+
+#navbar .mainbtn {
+  background-color: #1abc9c;
+  color: #fff;
+  border-radius: 5px;
+  transition: 0.3s;
+}
+
+#navbar .mainbtn:hover {
+  background-color: #4ac2aa;
+  color: #fff;
+}
+
+#navbar .mainbtn:disabled {
+  color: grey;
+}
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background: #34495e;
+  padding: 10px;
+  margin-top: 12px;
+  border-radius: 5px;
+  box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.3);
+  z-index: 2;
+}
+
+#navbar .dropdown-content li {
+  min-width: max-content;
+  border-radius: 4px;
+}
+
+#navbar .dropdown-content li button {
+  padding: 8px 14px;
+  border-radius: 5px;
+  font-size: 15px;
+  font-weight: normal;
+}
+
+#navbar .dropdown-content li button:hover {
+  background: #1abc9c;
+  color: #fff;
+}
+
+.show {
+  display: block;
+}
+
+.caret {
+  display: inline-block;
+  width: 0;
+  height: 0;
+  margin-left: 2px;
+  vertical-align: middle;
+  border-top: 5px dashed;
+  border-top: 5px solid\9;
+  border-right: 5px solid transparent;
+  border-left: 5px solid transparent;
+}
+
 /** Grid Style */
 table {
   border-collapse: collapse;

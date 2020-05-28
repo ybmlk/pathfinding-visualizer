@@ -4,12 +4,11 @@ import Context from '../Context';
 import { useContext } from 'react';
 
 function useVisualizeDijkstra() {
-  const clearBoard = useClearBoard('keep-walls');
+  const clearBoard = useClearBoard('keep-walls', 'keep-path-found');
   const { grid, startNode, endNode, setisAnimating, setPathFound } = useContext(Context);
 
   return function () {
     clearBoard();
-    // setPathFound(false);
     setisAnimating(true);
 
     const { visitedNodes, nodesPath } = dijkstra(grid, startNode, endNode);
@@ -33,6 +32,7 @@ function useVisualizeDijkstra() {
         if (i === nodesPath.length) {
           setTimeout(() => {
             setisAnimating(false);
+            // if a path is found, it'll allow for instant visualization
             setPathFound(true);
           }, 50 * i);
           continue;

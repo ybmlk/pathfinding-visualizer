@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useContext, useRef } from 'react';
 import useVisualizeDijkstra from '../hooks/useVisualizeDijkstra';
 import useClearBoard from '../hooks/useClearBoard';
 import useBasicRandomMaze from '../maze/useBasicRandomMaze';
@@ -9,52 +9,93 @@ import Context from '../Context';
 function Header() {
   const { isAnimating } = useContext(Context);
 
+  const algoRef = useRef();
+  const mazeRef = useRef();
+
   const clearBoard = useClearBoard('keep-walls');
   const resetBoard = useClearBoard('reset');
   const visualizeDijkstra = useVisualizeDijkstra();
   const generateBasicRandomMaze = useBasicRandomMaze();
   const generateDivisionMaze = useDivisionMaze();
   const generateBacktrackingMaze = useBacktrackingMaze();
+
+  function toggleDropDown(element) {
+    element.current.classList.toggle('show');
+  }
+
+  // Close the dropdown if the user clicks outside of it
+  window.onclick = function (event) {
+    if (event.target.matches('#algobtn')) mazeRef.current.classList.remove('show');
+    else if (event.target.matches('#mazebtn')) algoRef.current.classList.remove('show');
+    else {
+      algoRef.current.classList.remove('show');
+      mazeRef.current.classList.remove('show');
+    }
+  };
   return (
     <nav id='navbar'>
-      <div className='container'>
-        <h1 className='logo'>PATHFINDING VISUALIZER</h1>
-        <ul>
-          <li>
-            <button disabled={isAnimating} onClick={visualizeDijkstra}>
-              Visualize Dijkstra
-            </button>
-          </li>
-          <li>
-            <ul>
-              <li>
-                <button disabled={isAnimating} onClick={generateBasicRandomMaze}>
-                  Basic Random Maze
-                </button>
-              </li>
-              <li>
-                <button disabled={isAnimating} onClick={generateDivisionMaze}>
-                  Division Maze
-                </button>
-              </li>
-              <li>
-                <button disabled={isAnimating} onClick={generateBacktrackingMaze}>
-                  Backtracking Maze
-                </button>
-              </li>
-            </ul>
-          </li>
-          <li>
-            <button disabled={isAnimating} onClick={clearBoard}>
-              Clear Board
-            </button>
-          </li>
-          <li>
-            <button disabled={isAnimating} onClick={resetBoard}>
-              Reset Board
-            </button>
-          </li>
-        </ul>
+      <div className='wrapper'>
+        <div className='container'>
+          <h1 className='logo'>PATHFINDING VISUALIZER</h1>
+          <ul>
+            <li>
+              <button id='algobtn' disabled={isAnimating} onClick={() => toggleDropDown(algoRef)}>
+                Select Algorithm <span className='caret'></span>
+              </button>
+              <ul ref={algoRef} className='dropdown-content'>
+                <li>
+                  <button>Dijkstra's Algorithm</button>
+                </li>
+                <li>
+                  <button>A* Search Algorithm</button>
+                </li>
+                <li>
+                  <button>Breadth-first Search</button>
+                </li>
+                <li>
+                  <button>Depth-first Search</button>
+                </li>
+              </ul>
+            </li>
+            <li>
+              <button id='mazebtn' disabled={isAnimating} onClick={() => toggleDropDown(mazeRef)}>
+                Select Maze <span className='caret'></span>
+              </button>
+              <ul ref={mazeRef} className='dropdown-content'>
+                <li>
+                  <button disabled={isAnimating} onClick={generateDivisionMaze}>
+                    Division Maze
+                  </button>
+                </li>
+                <li>
+                  <button disabled={isAnimating} onClick={generateBacktrackingMaze}>
+                    Backtracking Maze
+                  </button>
+                </li>
+                <li>
+                  <button disabled={isAnimating} onClick={generateBasicRandomMaze}>
+                    Basic Random Maze
+                  </button>
+                </li>
+              </ul>
+            </li>
+            <li>
+              <button className='mainbtn' disabled={isAnimating} onClick={visualizeDijkstra}>
+                Visualize Dijkstra
+              </button>
+            </li>
+            <li>
+              <button disabled={isAnimating} onClick={clearBoard}>
+                Clear Board
+              </button>
+            </li>
+            <li>
+              <button disabled={isAnimating} onClick={resetBoard}>
+                Reset Board
+              </button>
+            </li>
+          </ul>
+        </div>
       </div>
     </nav>
   );

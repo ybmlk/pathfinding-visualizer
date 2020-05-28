@@ -4,8 +4,8 @@ import React, { createContext, useState } from 'react';
 const Context = createContext();
 
 function Provider({ children }) {
-  const NUMBER_OF_ROWS = 21;
-  const NUMBER_OF_COLS = 61;
+  const NUMBER_OF_ROWS = 23;
+  const NUMBER_OF_COLS = 59;
   const START_NODE = { row: 10, col: 15 };
   const END_NODE = { row: 10, col: 45 };
 

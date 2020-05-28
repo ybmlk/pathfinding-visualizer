@@ -34,6 +34,7 @@ function useClearBoard(...arg) {
           document.getElementById(`node-${row}-${col}`).classList.remove('node-wall');
         }
 
+        // keep-path-found allows instant visualization
         if (!arg.includes('keep-path-found')) {
           setPathFound(false);
           document.getElementById(`node-${row}-${col}`).classList.remove('hidden-wall');

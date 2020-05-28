@@ -17,7 +17,7 @@ function useBacktrackingMaze() {
 
     generateInitialWall(2, NUMBER_OF_ROWS - 3, 2, NUMBER_OF_COLS - 3, grid);
     backtrackingRecursion(grid[1][1], grid);
-    visualizeMaze(addWallsToAnimate, 3, removeWallsToAnimate, 30);
+    visualizeMaze(addWallsToAnimate, 2, removeWallsToAnimate, 25);
 
     function generateInitialWall(rowStart, rowEnd, colStart, colEnd) {
       const wallRows = [];
