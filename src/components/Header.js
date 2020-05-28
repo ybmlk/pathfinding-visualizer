@@ -5,6 +5,7 @@ import useBasicRandomMaze from '../maze/useBasicRandomMaze';
 import useDivisionMaze from '../maze/useDivisionMaze';
 import useBacktrackingMaze from '../maze/useBacktrackingMaze';
 import Context from '../Context';
+import Logo from '../css/path.svg';
 
 function Header() {
   const { isAnimating } = useContext(Context);
@@ -36,7 +37,9 @@ function Header() {
     <nav id='navbar'>
       <div className='wrapper'>
         <div className='container'>
-          <h1 className='logo'>PATHFINDING VISUALIZER</h1>
+          <div className='logo'>
+            <img src={Logo} alt='' /> <h1>ATHFINDING VISUALIZER</h1>
+          </div>
           <ul>
             <li>
               <button id='algobtn' disabled={isAnimating} onClick={() => toggleDropDown(algoRef)}>

@@ -35,6 +35,18 @@ code {
 #navbar .logo {
   float: left;
   margin-right: 100px;
+  margin-top: 3px;
+}
+
+#navbar .logo img {
+  height: 32px;
+  float: left;
+}
+
+#navbar .logo h1 {
+  display: inline;
+  font-family: 'Chelsea Market', cursive;
+  font-weight: 500;
 }
 
 #navbar ul {
@@ -72,7 +84,6 @@ code {
 #navbar ul li button:focus {
   outline: none;
 }
-
 
 #navbar .mainbtn {
   background-color: #1abc9c;
