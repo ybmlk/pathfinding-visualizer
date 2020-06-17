@@ -35,70 +35,68 @@ function Header() {
   };
   return (
     <nav id='navbar'>
-      <div className='wrapper'>
-        <div className='container'>
-          <div className='logo'>
-            <img src={Logo} alt='' /> <h1>ATHFINDING VISUALIZER</h1>
-          </div>
-          <ul>
-            <li>
-              <button id='algobtn' disabled={isAnimating} onClick={() => toggleDropDown(algoRef)}>
-                Select Algorithm <span className='caret'></span>
-              </button>
-              <ul ref={algoRef} className='dropdown-content'>
-                <li>
-                  <button>Dijkstra's Algorithm</button>
-                </li>
-                <li>
-                  <button>A* Search Algorithm</button>
-                </li>
-                <li>
-                  <button>Breadth-first Search</button>
-                </li>
-                <li>
-                  <button>Depth-first Search</button>
-                </li>
-              </ul>
-            </li>
-            <li>
-              <button id='mazebtn' disabled={isAnimating} onClick={() => toggleDropDown(mazeRef)}>
-                Select Maze <span className='caret'></span>
-              </button>
-              <ul ref={mazeRef} className='dropdown-content'>
-                <li>
-                  <button disabled={isAnimating} onClick={generateDivisionMaze}>
-                    Division Maze
-                  </button>
-                </li>
-                <li>
-                  <button disabled={isAnimating} onClick={generateBacktrackingMaze}>
-                    Backtracking Maze
-                  </button>
-                </li>
-                <li>
-                  <button disabled={isAnimating} onClick={generateBasicRandomMaze}>
-                    Basic Random Maze
-                  </button>
-                </li>
-              </ul>
-            </li>
-            <li>
-              <button className='mainbtn' disabled={isAnimating} onClick={visualizeDijkstra}>
-                Visualize Dijkstra
-              </button>
-            </li>
-            <li>
-              <button disabled={isAnimating} onClick={clearBoard}>
-                Clear Board
-              </button>
-            </li>
-            <li>
-              <button disabled={isAnimating} onClick={resetBoard}>
-                Reset Board
-              </button>
-            </li>
-          </ul>
+      <div className='container'>
+        <div className='logo'>
+          <img src={Logo} alt='' /> <h1>ATHFINDING VISUALIZER</h1>
         </div>
+        <ul className='main-menu'>
+          <li>
+            <button id='algobtn' disabled={isAnimating} onClick={() => toggleDropDown(algoRef)}>
+              Select Algorithm <span className='caret'></span>
+            </button>
+            <ul ref={algoRef} className='dropdown-content'>
+              <li>
+                <button>Dijkstra's Algorithm</button>
+              </li>
+              <li>
+                <button>A* Search Algorithm</button>
+              </li>
+              <li>
+                <button>Breadth-first Search</button>
+              </li>
+              <li>
+                <button>Depth-first Search</button>
+              </li>
+            </ul>
+          </li>
+          <li>
+            <button id='mazebtn' disabled={isAnimating} onClick={() => toggleDropDown(mazeRef)}>
+              Select Maze <span className='caret'></span>
+            </button>
+            <ul ref={mazeRef} className='dropdown-content'>
+              <li>
+                <button disabled={isAnimating} onClick={generateDivisionMaze}>
+                  Division Maze
+                </button>
+              </li>
+              <li>
+                <button disabled={isAnimating} onClick={generateBacktrackingMaze}>
+                  Backtracking Maze
+                </button>
+              </li>
+              <li>
+                <button disabled={isAnimating} onClick={generateBasicRandomMaze}>
+                  Basic Random Maze
+                </button>
+              </li>
+            </ul>
+          </li>
+          <li>
+            <button className='mainbtn' disabled={isAnimating} onClick={visualizeDijkstra}>
+              Visualize Dijkstra
+            </button>
+          </li>
+          <li>
+            <button disabled={isAnimating} onClick={clearBoard}>
+              Clear Board
+            </button>
+          </li>
+          <li>
+            <button disabled={isAnimating} onClick={resetBoard}>
+              Reset Board
+            </button>
+          </li>
+        </ul>
       </div>
     </nav>
   );

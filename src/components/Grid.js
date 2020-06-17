@@ -45,7 +45,7 @@ function Grid() {
   const mouseActionsList = useMouseActions();
 
   return (
-    <div className='grid'>
+    <div>
       <table>
         <tbody>
           {grid.map((currentRow, rowIdx) => (

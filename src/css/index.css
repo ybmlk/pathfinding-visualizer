@@ -16,50 +16,45 @@ code {
 }
 
 /** Header Style */
-.wrapper {
-  margin: auto;
-  max-width: fit-content;
-  padding: 10px 20px;
-}
-
-.container {
-  display: table-cell;
-  vertical-align: middle;
-}
-
 #navbar {
   background: #34495e;
   color: #fff;
 }
 
-#navbar .logo {
-  float: left;
-  margin-right: 100px;
-  margin-top: 3px;
+#navbar .container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  max-width: 1200px;
+  margin: auto;
+  height: 65px;
 }
 
-#navbar .logo img {
+#navbar .main-menu > li {
+  display: inline-block;
+  position: relative;
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+}
+
+.logo img {
   height: 32px;
-  float: left;
 }
 
-#navbar .logo h1 {
+.logo h1 {
   display: inline;
   font-family: 'Chelsea Market', cursive;
   font-weight: 500;
 }
 
-#navbar ul {
+ul {
   list-style-type: none;
-  float: right;
 }
 
-#navbar ul li {
-  float: left;
-  position: relative;
-}
-
-#navbar ul li button {
+.main-menu li button {
   display: block;
   color: #fff;
   padding: 10px 15px;
@@ -73,31 +68,31 @@ code {
   transition: 0.3s;
 }
 
-#navbar ul li button:hover {
+.main-menu li button:hover {
   color: #41dabb;
 }
 
-#navbar ul li button:disabled {
+.main-menu li button:disabled {
   color: gray;
 }
 
-#navbar ul li button:focus {
+.main-menu li button:focus {
   outline: none;
 }
 
-#navbar .mainbtn {
+.main-menu .mainbtn {
   background-color: #1abc9c;
   color: #fff;
   border-radius: 5px;
   transition: 0.3s;
 }
 
-#navbar .mainbtn:hover {
+.main-menu .mainbtn:hover {
   background-color: #4ac2aa;
   color: #fff;
 }
 
-#navbar .mainbtn:disabled {
+.main-menu .mainbtn:disabled {
   color: grey;
 }
 
@@ -106,25 +101,21 @@ code {
   position: absolute;
   background: #34495e;
   padding: 10px;
-  margin-top: 12px;
   border-radius: 5px;
   box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.3);
   z-index: 2;
+  width: 200px;
 }
 
-#navbar .dropdown-content li {
-  min-width: max-content;
-  border-radius: 4px;
-}
-
-#navbar .dropdown-content li button {
+.dropdown-content li button {
+  display: block;
   padding: 8px 14px;
-  border-radius: 5px;
   font-size: 15px;
   font-weight: normal;
+  border-radius: 5px;
 }
 
-#navbar .dropdown-content li button:hover {
+.dropdown-content li button:hover {
   background: #1abc9c;
   color: #fff;
 }
@@ -160,8 +151,6 @@ table {
   font-variant: normal;
   margin: 30px auto;
   max-width: inherit;
-  /* padding: 0; */
-  /* border-spacing: none; */
 }
 
 td {
@@ -174,10 +163,6 @@ tr {
   display: table-row;
   vertical-align: inherit;
   border-color: inherit;
-}
-
-.grid {
-  margin: 50px 0 0;
 }
 
 .node-start {
