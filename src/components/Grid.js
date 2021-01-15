@@ -56,7 +56,7 @@ function Grid() {
       >
         <p style={{ fontStyle: 'italic', textAlign: 'center', lineHeight: '25px' }}>
           {' '}
-          You can draw obstacles by pressing down and moving the mouse.
+          You can draw obstacles by pressing down and moving the mouse across the board.
           <br />
           You can move the start and end nodes by dragging.
         </p>
