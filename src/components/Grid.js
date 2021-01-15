@@ -46,6 +46,21 @@ function Grid() {
 
   return (
     <div>
+      <div
+        style={{
+          display: 'flex',
+          justifyContent: 'center',
+          marginBottom: '-20px',
+          marginTop: '10px',
+        }}
+      >
+        <p style={{ fontStyle: 'italic', textAlign: 'center', lineHeight: '25px' }}>
+          {' '}
+          You can draw obstacles by pressing down and moving the mouse.
+          <br />
+          You can move the start and end nodes by dragging.
+        </p>
+      </div>
       <table>
         <tbody>
           {grid.map((currentRow, rowIdx) => (

@@ -40,7 +40,8 @@ function Header() {
           <img src={Logo} alt='' /> <h1>ATHFINDING VISUALIZER</h1>
         </div>
         <ul className='main-menu'>
-          <li>
+          {/* Hides Algorithms drop down */}
+          <li style={{ display: 'none' }}>
             <button id='algobtn' disabled={isAnimating} onClick={() => toggleDropDown(algoRef)}>
               Select Algorithm <span className='caret'></span>
             </button>
